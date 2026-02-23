@@ -3,15 +3,15 @@ const DarkThemeColors = [
     name: 'DEFAULT',
     palette: {
       primary: {
-        main: '#004D61',
-        light: '#7ebccc',
-        dark: '#002833',
+        main: '#46A23E',
+        light: '#ECF2FF',
+        dark: '#4570EA',
         contrastText: '#ffffff',
       },
       secondary: {
-        main: '#FF5031',
-        light: '#fc917e',
-        dark: '#b24633',
+        main: '#49BEFF',
+        light: '#E8F7FF',
+        dark: '#23afdb',
         contrastText: '#ffffff',
       },
       background: {
@@ -21,7 +21,6 @@ const DarkThemeColors = [
       },
     },
   },
-
 ];
 
 export { DarkThemeColors };

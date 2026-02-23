@@ -12,6 +12,7 @@ import {
 
 import { IconMail } from '@tabler/icons-react';
 import { Stack } from '@mui/system';
+import { AppState, useSelector } from 'store/Store';
 
 const Profile = () => {
   const [anchorEl2, setAnchorEl2] = useState(null);
@@ -21,6 +22,8 @@ const Profile = () => {
   const handleClose2 = () => {
     setAnchorEl2(null);
   };
+
+  const profile = useSelector((s: AppState) => s.user.profile);
 
   return (
     <Box>
@@ -46,9 +49,6 @@ const Profile = () => {
           }}
         />
       </IconButton>
-      {/* ------------------------------------------- */}
-      {/* Message Dropdown */}
-      {/* ------------------------------------------- */}
       <Menu
         id="msgs-menu"
         anchorEl={anchorEl2}
@@ -77,10 +77,10 @@ const Profile = () => {
               color="textPrimary"
               fontWeight={600}
             >
-              Leonardo Fonseca
+              {profile.name}
             </Typography>
             <Typography variant="subtitle2" color="textSecondary">
-              Desenvolvedor Front-end
+              {profile.role}
             </Typography>
             <Typography
               variant="subtitle2"
@@ -90,17 +90,37 @@ const Profile = () => {
               gap={1}
             >
               <IconMail width={15} height={15} />
-              leoalfonseca@gmail.com
+              {profile.email}
             </Typography>
           </Box>
         </Stack>
         <Divider />
-        <Box mt={2}>
+        <Box mt={2} display="grid" gap={1}>
           <Button
-            href="/"
-            variant="outlined"
-            color="primary"
             component={Link}
+            href="/profile"
+            variant="contained"
+            fullWidth
+          >
+            Abrir perfil
+          </Button>
+
+          <Button
+            component={Link}
+            href="/profile?tab=prefs"
+            variant="outlined"
+            fullWidth
+          >
+            Preferências
+          </Button>
+
+          <Divider sx={{ my: 1 }} />
+
+          <Button
+            component={Link}
+            href="/"
+            color="error"
+            variant="outlined"
             fullWidth
           >
             Desconectar

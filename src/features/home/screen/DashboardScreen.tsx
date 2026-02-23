@@ -1,42 +1,69 @@
 import { Grid } from '@mui/material';
-
 import { useSelector } from 'store/Store';
+import { DashboardPreferencesBar } from '../components/DashboardPreferencesBar';
+
 import {
-  LastTransactions,
-  YearlyBreakup,
-  RevenueUpdates,
-  Transactions,
-  MonthlyEarnings,
+  TodayPlan,
+  FocusSession,
+  QuickActions,
+  WorkloadBreakdown,
+  RecentActivity,
 } from '../components';
 
 export function DashboardScreen() {
   const widgets = useSelector((state) => state.widgets);
+  const prefs = useSelector((state) => state.preferences);
+
+  const allow = (widgetKey: keyof typeof widgets) => {
+    if (!widgets[widgetKey]) return false;
+
+    if (prefs.focusMode) {
+      return widgetKey === 'todayPlan' || widgetKey === 'focusSession';
+    }
+
+    if (prefs.complexityLevel === 1) {
+      return widgetKey === 'focusSession' || widgetKey === 'quickActions';
+    }
+    if (prefs.complexityLevel === 2) {
+      return widgetKey !== 'workloadBalance';
+    }
+
+    return true;
+  };
 
   return (
     <Grid container spacing={3}>
-      {widgets.revenueUpdates && (
+      <Grid item xs={12}>
+        <DashboardPreferencesBar />
+      </Grid>
+
+      {allow('todayPlan') && (
         <Grid item xs={12} lg={8}>
-          <RevenueUpdates />
+          <TodayPlan />
         </Grid>
       )}
-      {widgets.transactions && (
+
+      {allow('quickActions') && (
         <Grid item xs={12} lg={4}>
-          <Transactions />
+          <QuickActions />
         </Grid>
       )}
-      {widgets.monthlyEarnings && (
-        <Grid item xs={12} lg={8}>
-          <MonthlyEarnings />
+
+      {allow('focusSession') && (
+        <Grid item xs={12} lg={prefs.complexityLevel === 2 ? 12 : 8}>
+          <FocusSession />
         </Grid>
       )}
-      {widgets.yearlyBreakup && (
+
+      {allow('workloadBalance') && (
         <Grid item xs={12} lg={4}>
-          <YearlyBreakup />
+          <WorkloadBreakdown />
         </Grid>
       )}
-      {widgets.lastTransactions && (
-        <Grid item xs={24} lg={12}>
-          <LastTransactions />
+
+      {allow('recentActivities') && (
+        <Grid item xs={12} lg={12}>
+          <RecentActivity />
         </Grid>
       )}
     </Grid>

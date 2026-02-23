@@ -1,4 +1,3 @@
-import React from 'react';
 import {
   Box,
   Avatar,
@@ -14,6 +13,7 @@ import Link from 'next/link';
 
 export const Profile = () => {
   const customizer = useSelector((state: AppState) => state.customizer);
+  const profile = useSelector((s: AppState) => s.user.profile);
   const lgUp = useMediaQuery((theme: any) => theme.breakpoints.up('lg'));
   const hideMenu = lgUp
     ? customizer.isCollapse && !customizer.isSidebarHover
@@ -24,15 +24,22 @@ export const Profile = () => {
       display={'flex'}
       alignItems="center"
       gap={2}
-      sx={{ m: 3, p: 2, bgcolor: `${'primary.light'}` }}
+      sx={{
+        m: 3,
+        p: 2,
+        borderColor: 'divider',
+        borderWidth: 1,
+        borderStyle: 'solid',
+        borderRadius: 2,
+      }}
     >
       {!hideMenu ? (
         <>
           <Avatar alt="Remy Sharp" src={'/images/profile/user-1.jpg'} />
 
           <Box>
-            <Typography variant="h6">Leonardo</Typography>
-            <Typography variant="caption">Dev</Typography>
+            <Typography variant="h6">{profile.name}</Typography>
+            <Typography variant="caption">{profile.role}</Typography>
           </Box>
           <Box sx={{ ml: 'auto' }}>
             <Tooltip title="Logout" placement="top">

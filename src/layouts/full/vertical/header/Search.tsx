@@ -25,7 +25,6 @@ interface menuType {
 }
 
 const Search = () => {
-  // drawer top
   const [showDrawer2, setShowDrawer2] = useState(false);
   const [search, setSerach] = useState('');
 
@@ -36,7 +35,9 @@ const Search = () => {
   const filterRoutes = (rotr: any, cSearch: string) => {
     if (rotr.length > 1)
       return rotr.filter((t: any) =>
-        t.title ? t.href.toLocaleLowerCase().includes(cSearch.toLocaleLowerCase()) : '',
+        t.title
+          ? t.href.toLocaleLowerCase().includes(cSearch.toLocaleLowerCase())
+          : '',
       );
 
     return rotr;
@@ -89,7 +90,11 @@ const Search = () => {
                 return (
                   <Box key={menu.title ? menu.id : menu.subheader}>
                     {menu.title && !menu.children ? (
-                      <ListItemButton sx={{ py: 0.5, px: 1 }} href={menu?.href} component={Link}>
+                      <ListItemButton
+                        sx={{ py: 0.5, px: 1 }}
+                        href={menu?.href}
+                        component={Link}
+                      >
                         <ListItemText
                           primary={menu.title}
                           secondary={menu?.href}

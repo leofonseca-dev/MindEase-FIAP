@@ -41,7 +41,6 @@ const BpCheckedIcon = styled(BpIcon)(({ theme }) => ({
   },
 }));
 
-// Inspired by blueprintjs
 function CustomRadio(props: RadioProps) {
   return (
     <Radio
@@ -50,7 +49,9 @@ function CustomRadio(props: RadioProps) {
       checkedIcon={
         <BpCheckedIcon
           sx={{
-            backgroundColor: props.color ? `${props.color}.main` : 'primary.main',
+            backgroundColor: props.color
+              ? `${props.color}.main`
+              : 'primary.main',
           }}
         />
       }

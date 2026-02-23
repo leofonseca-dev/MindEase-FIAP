@@ -13,10 +13,12 @@ const MainWrapper = styled('div')(() => ({
 const PageWrapper = styled('div')(() => ({
   display: 'flex',
   flexGrow: 1,
+  minWidth: 0,
+  width: 'auto',
   paddingBottom: '60px',
   flexDirection: 'column',
   zIndex: 1,
-  width: '100%',
+  marginLeft: 0,
   backgroundColor: 'transparent',
 }));
 
@@ -24,7 +26,6 @@ interface Props {
   children: React.ReactNode;
 }
 
-// const FullLayout: FC = ({children}) => {
 const FullLayout: React.FC<Props> = ({ children }) => {
   const customizer = useSelector((state: AppState) => state.customizer);
 
@@ -35,32 +36,17 @@ const FullLayout: React.FC<Props> = ({ children }) => {
       <Sidebar />
 
       <PageWrapper
-        className="page-wrapper"
         sx={{
-          ...(customizer.isCollapse && {
-            [theme.breakpoints.up('lg')]: {
-              ml: `${customizer.MiniSidebarWidth}px`,
-            },
-          }),
+          [theme.breakpoints.up('lg')]: {
+            ml: `${customizer.isCollapse ? customizer.MiniSidebarWidth : 0}px`,
+          },
+          minWidth: 0,
         }}
       >
         <Header />
         <Container disableGutters={true} maxWidth={false}>
-          {/* ------------------------------------------- */}
-          {/* PageContent */}
-          {/* ------------------------------------------- */}
-
-          <Box sx={{ minHeight: 'calc(100vh - 170px)', mx: 5 }}>
-            {/* <Outlet /> */}
-            {children}
-            {/* <Index /> */}
-          </Box>
-
-          {/* ------------------------------------------- */}
-          {/* End Page */}
-          {/* ------------------------------------------- */}
+          <Box sx={{ minHeight: 'calc(100vh - 170px)', mx: 5 }}>{children}</Box>
         </Container>
-        {/* <Customizer /> */}
       </PageWrapper>
     </MainWrapper>
   );

@@ -1,21 +1,25 @@
-import { configureStore } from "@reduxjs/toolkit";
-import CustomizerReducer from "./customizer/CustomizerSlice";
-import UserProfileReducer from "./apps/userProfile/UserProfileSlice";
-import { combineReducers } from "redux";
+import { configureStore } from '@reduxjs/toolkit';
+import CustomizerReducer from './customizer/CustomizerSlice';
+import UserProfileReducer from './apps/userProfile/UserProfileSlice';
+import { combineReducers } from 'redux';
 import {
   useDispatch as useAppDispatch,
   useSelector as useAppSelector,
   TypedUseSelectorHook,
-} from "react-redux";
+} from 'react-redux';
 import WidgetReducer from './widgets/WidgetSlice';
-import TransactionsReducer from './transactions/TransactionsSlice';
+import PreferencesReducer from './preferences/PreferencesSlice';
+import TasksReducer from './tasks/TasksSlice';
+import UserReducer from './user/UserSlice';
 
 export const store = configureStore({
   reducer: {
     customizer: CustomizerReducer,
     userpostsReducer: UserProfileReducer,
     widgets: WidgetReducer,
-    transactions: TransactionsReducer
+    preferences: PreferencesReducer,
+    tasks: TasksReducer,
+    user: UserReducer,
   },
 });
 
@@ -23,7 +27,9 @@ const rootReducer = combineReducers({
   customizer: CustomizerReducer,
   userpostsReducer: UserProfileReducer,
   widgets: WidgetReducer,
-  transactions: TransactionsReducer
+  preferences: PreferencesReducer,
+  tasks: TasksReducer,
+  user: UserReducer,
 });
 
 export type AppState = ReturnType<typeof rootReducer>;

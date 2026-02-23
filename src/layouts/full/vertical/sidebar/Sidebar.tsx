@@ -2,7 +2,10 @@ import { useMediaQuery, Box, Drawer, useTheme } from '@mui/material';
 import SidebarItems from './SidebarItems';
 import Logo from '../../shared/logo/Logo';
 import { useSelector, useDispatch } from '../../../../store/Store';
-import { hoverSidebar, toggleMobileSidebar } from '../../../../store/customizer/CustomizerSlice';
+import {
+  hoverSidebar,
+  toggleMobileSidebar,
+} from '../../../../store/customizer/CustomizerSlice';
 import Scrollbar from '../../../../components/custom-scroll/Scrollbar';
 import { Profile } from './SidebarProfile/Profile';
 import { AppState } from '../../../../store/Store';
@@ -38,7 +41,6 @@ const Sidebar = () => {
           }),
         }}
       >
-
         <Drawer
           anchor="left"
           open
@@ -60,12 +62,10 @@ const Sidebar = () => {
               height: '100%',
             }}
           >
-
             <Box px={3}>
               <Logo />
             </Box>
             <Scrollbar sx={{ height: 'calc(100% - 190px)' }}>
-
               <SidebarItems />
             </Scrollbar>
             <Profile />
@@ -77,7 +77,6 @@ const Sidebar = () => {
 
   return (
     <Drawer
-
       anchor="left"
       open={customizer.isMobileSidebar}
       onClose={() => dispatch(toggleMobileSidebar())}
@@ -86,25 +85,14 @@ const Sidebar = () => {
         sx: {
           width: customizer.SidebarWidth,
 
-          // backgroundColor:
-          //   customizer.activeMode === 'dark'
-          //     ? customizer.darkBackground900
-          //     : customizer.activeSidebarBg,
-          // color: customizer.activeSidebarBg === '#ffffff' ? '' : 'white',
           border: '0 !important',
           boxShadow: (theme) => theme.shadows[8],
         },
       }}
     >
-      {/* ------------------------------------------- */}
-      {/* Logo */}
-      {/* ------------------------------------------- */}
       <Box px={2}>
         <Logo />
       </Box>
-      {/* ------------------------------------------- */}
-      {/* Sidebar For Mobile */}
-      {/* ------------------------------------------- */}
       <SidebarItems />
     </Drawer>
   );

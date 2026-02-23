@@ -7,7 +7,7 @@ import {
   Typography,
   Box,
 } from '@mui/material';
-import { IconBellRinging, IconLayoutDashboard } from '@tabler/icons-react';
+import { IconLayoutDashboard } from '@tabler/icons-react';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'store/Store';
 import { toggleWidget } from 'store/widgets/WidgetSlice';
@@ -26,11 +26,11 @@ const WidgetMenu = () => {
   };
 
   const widgetLabels: Record<string, string> = {
-    revenueUpdates: 'Informações Gerais',
-    transactions: 'Extrato',
-    monthlyEarnings: 'Lucro Mensal',
-    yearlyBreakup: 'Detalhamento Anual',
-    lastTransactions: 'Últimas Transações',
+    todayPlan: 'Planos de Hoje',
+    quickActions: 'Ações Rápidas',
+    focusSession: 'Sessão de Foco',
+    workloadBalance: 'Distribuição de Carga',
+    recentActivities: 'Atividade Recente',
   };
 
   return (
@@ -55,7 +55,9 @@ const WidgetMenu = () => {
                 control={
                   <Checkbox
                     checked={value}
-                    onChange={() => dispatch(toggleWidget(key as keyof typeof widgets))}
+                    onChange={() =>
+                      dispatch(toggleWidget(key as keyof typeof widgets))
+                    }
                   />
                 }
                 label={widgetLabels[key] || key}

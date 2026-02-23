@@ -17,18 +17,14 @@ import { IconMenu2, IconMoon, IconSun } from '@tabler/icons-react';
 import Profile from './Profile';
 import { AppState } from '../../../../store/Store';
 import MobileRightSidebar from './MobileRightSidebar';
-import WidgetMenu from './WidgetMenu';
 import { usePathname } from 'next/navigation';
 
 const Header = () => {
   const lgUp = useMediaQuery((theme: any) => theme.breakpoints.up('lg'));
   const lgDown = useMediaQuery((theme: any) => theme.breakpoints.down('lg'));
 
-  // drawer
   const customizer = useSelector((state: AppState) => state.customizer);
   const dispatch = useDispatch();
-
-  const pathname = usePathname();
 
   const AppBarStyled = styled(AppBar)(({ theme }) => ({
     boxShadow: 'none',
@@ -78,7 +74,6 @@ const Header = () => {
           </IconButton>
           {lgDown ? <MobileRightSidebar /> : null}
 
-          {pathname === '/home' && <WidgetMenu />}
           <Profile />
         </Stack>
       </ToolbarStyled>

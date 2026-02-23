@@ -16,7 +16,6 @@ const GenericChart = ({
   dates,
   imageURI,
 }: IChartProps) => {
-  // chart color
   const theme = useTheme();
   const secondary = theme.palette.secondary.main;
 

@@ -1,5 +1,3 @@
-// Notifications dropdown
-
 interface notificationType {
   avatar: string;
   title: string;

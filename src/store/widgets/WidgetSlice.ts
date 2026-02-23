@@ -1,19 +1,19 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 export interface WidgetState {
-  revenueUpdates: boolean;
-  transactions: boolean;
-  monthlyEarnings: boolean;
-  yearlyBreakup: boolean;
-  lastTransactions: boolean;
+  todayPlan: boolean;
+  quickActions: boolean;
+  focusSession: boolean;
+  workloadBalance: boolean;
+  recentActivities: boolean;
 }
 
 const initialState: WidgetState = {
-  revenueUpdates: true,
-  transactions: true,
-  monthlyEarnings: true,
-  yearlyBreakup: true,
-  lastTransactions: true,
+  todayPlan: true,
+  quickActions: true,
+  focusSession: true,
+  workloadBalance: true,
+  recentActivities: true,
 };
 
 const widgetSlice = createSlice({

@@ -21,7 +21,10 @@ const BpIcon = styled('span')(({ theme }) => ({
     outlineOffset: 2,
   },
   'input:hover ~ &': {
-    backgroundColor: theme.palette.mode === 'dark' ? theme.palette.primary : theme.palette.primary,
+    backgroundColor:
+      theme.palette.mode === 'dark'
+        ? theme.palette.primary
+        : theme.palette.primary,
   },
   'input:disabled ~ &': {
     boxShadow: 'none',
@@ -45,7 +48,6 @@ const BpCheckedIcon = styled(BpIcon)({
   },
 });
 
-// Inspired by blueprintjs
 function CustomCheckbox(props: CheckboxProps) {
   return (
     <Checkbox
@@ -54,7 +56,9 @@ function CustomCheckbox(props: CheckboxProps) {
       checkedIcon={
         <BpCheckedIcon
           sx={{
-            backgroundColor: props.color ? `${props.color}.main` : 'primary.main',
+            backgroundColor: props.color
+              ? `${props.color}.main`
+              : 'primary.main',
           }}
         />
       }
